@@ -1,0 +1,41 @@
+//Blob b;
+Blob[] blobs = new Blob[3];
+
+void setup() {
+  size(600, 400);
+  colorMode(HSB);
+  for (int i =0; i<blobs.length; i++)
+  {
+    blobs[i] = new Blob(random(width), random(height), random(1, 80));
+  }
+}
+
+void draw() {
+  background(255);
+  loadPixels();
+  for (int x = 0; x<width; x++)
+  {
+    for (int y = 0; y<height; y++)
+    {
+      int index = x+y*width;
+      int sum = 0;
+      for (Blob b : blobs)
+      {
+        float d = dist(x, y, b.pos.x, b.pos.y);
+        sum += 100*b.r / d;
+        
+      }
+      pixels[index] = color(constrain(sum,0,220),255,255);
+    }
+  }
+  
+  
+  updatePixels();
+  
+  
+  for (Blob b : blobs)
+  {
+    //b.show();
+    b.update();
+  }
+}
