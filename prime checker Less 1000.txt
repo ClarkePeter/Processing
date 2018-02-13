@@ -1,0 +1,22 @@
+void setup()
+{
+  for (int checkNum = 2; checkNum < 1000; checkNum++)
+  {
+
+    boolean isPrime = true;
+
+    for (int i = 2; i < Math.sqrt(checkNum); i++)
+    {
+      if (checkNum % i == 0)
+      {
+        isPrime = false;
+        break;
+      }
+    }
+
+    if (isPrime)
+    {
+      println(checkNum);
+    }
+  }
+}
